@@ -1,0 +1,143 @@
+.btn-style-one {
+    position: relative;
+    display: inline-block;
+    font-size: 16px;
+    line-height: 30px;
+    color: #000;
+    padding: 14px 44px;
+    font-weight: 600;
+    overflow: hidden;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #ff0300;
+    text-transform: capitalize;
+    background: -webkit-linear-gradient(to right, #ff0300 0%, #ff8f00 100%);
+    background: -moz-linear-gradient(to right, #ff0300 0%, #ff8f00 100%);
+    background: linear-gradient(to right, #e7c624 0%, #aa720b 100%);
+}
+	video#video-background {
+    margin-top: -8%;
+}
+	.gallery-block-four .inner-box .content-box .box-inner h3 {
+   
+   color: #dcdcdc;
+   
+}
+.gallery-block-four .inner-box .content-box .box-inner .text {
+   
+   color: #e8891c;
+   
+}
+	.gallery-block-four .inner-box .content-box .box-inner {
+    position: relative;
+    padding: 40px 40px;
+    background-color: #000000;
+    box-shadow: 0px 0px 15px rgb(232 114 114 / 51%);
+}
+	.call-to-action-section-three .inner-container {
+    position: relative;
+    padding: 30px 0px 20px;
+}
+	.call-to-action-section-three {
+    position: relative;
+    margin-top: -6%;
+    z-index: 3;
+}
+	.footer-style-two:before {
+   
+   background-color: rgb(0 0 0 / 70%);
+}
+	.fancybox-slide {
+    
+    width: auto;
+    height: auto;
+    
+}
+	.btn-style-one {
+    
+    padding: 8px 44px;
+    margin-right: 14px;
+    margin-top: 11px;
+}
+	.header-style-six {
+    position: relative;
+    background-color: #15121200;
+}
+	.business-section-three:before {
+    
+    background-color: rgb(0 0 0 / 80%);
+}
+	.about-info-box .box-inner {
+    position: relative;
+    padding-left: 0px;
+}
+	.service-block-nine .inner-box .content {
+    position: relative;
+    padding-left: 0px;
+}
+	.service-block-nine .inner-box .content {
+    position: relative;
+    padding-left: 0px;
+}
+	.service-block-eight .inner-box .lower-content .content {
+    position: relative;
+    padding-left: 0px;
+}
+	sec-title.style-four .title {
+		border-color: #dab51f !important;
+    
+}
+	.footer-style-two .footer-widget h4 {
+   
+   color: #dab51f;
+   
+}
+	.accordion-box-three .block .icon-outer .icon {
+    
+    color: #dab51f;
+    
+}
+	.accordion-box-three .block.active-block {
+    border-color: #dab51f;
+}
+	.accordion-box-three .block .acc-btn.active {
+    
+    color: #dab51f;
+    
+}
+	.faq-section-two .image-column .video-box {
+    
+    background: #dab51f;
+}
+.footer-style-two.style-three .footer-bottom:before {
+    background-color: #ddb920;
+}
+	.service-block-nine .inner-box .color-layer {
+border-left: 8px solid #dab51f;
+}
+	.business-section-two {
+   
+   margin-top: -88px;
+   
+}
+	.btn-style-nine {
+    
+    background-color: #dab51f;
+}
+	#video-background {
+    
+    right: 0;
+    bottom: 0;
+    /* min-width: 100%;
+    min-height: 75%; */
+    width: auto;
+    height: auto;
+    z-index: -100;
+}
+	.footer-style-two .footer-widget h4:after {
+		display: none;
+    
+}
+.footer-style-two .footer-widget h4:before {
+    display: none;
+}
