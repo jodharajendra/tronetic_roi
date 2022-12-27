@@ -10,30 +10,78 @@ import LoaderHelper from "../../../customComponent/Loading/LoaderHelper";
 
 const BuyPackageDetails = (props) => {
 
+  const TronWeb = require('tronweb')
+  const HttpProvider = TronWeb.providers.HttpProvider;
+  let fullNode = '';
+  let solidityNode = '';
+  let eventServer = '';
+  const privateKey = '';
+  let tronWeb = new TronWeb({
+    fullHost: 'https://api.trongrid.io',
+    privateKey
+  });
+
   const [activeScreen, setActiveScreen] = useState("StackingDetails");
   const [nsdtStackingPrice, setNsdtStackingPrice] = useState([]);
   const [usdtAmount, setUsdtAmount] = useState(props?.userId);
   const [depositBlockAura, setDepositBlockAura] = useState('');
   const [senderAddress, setSenderAddress] = useState('');
   const [transtionHash, setTranstionHash] = useState('');
-
   const nsdtTotalAmt = usdtAmount / nsdtStackingPrice;
-
-
   const loginid = localStorage.getItem("loginid");
   const starter = props?.userId;
+
+
+
+  const withdrawUsdt = async () => {
+    const CONTRACT = "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t"; // USDT
+    const ACCOUNT = "";
+
+    let {
+      transaction,
+      result
+    } = await tronWeb.transactionBuilder.triggerSmartContract(
+      CONTRACT, 'transfer(address,uint256)', {
+      feeLimit: 100_000_000,
+      callValue: 0
+    },
+      [{
+        type: 'address',
+        value: ACCOUNT
+      }, {
+        type: 'uint256',
+        value: 1000000
+      }]
+    );
+
+    const signature = await tronWeb.trx.sign(transaction.raw_data_hex, privateKey);
+    console.log("Signature:", signature);
+    transaction["signature"] = [signature];
+
+    const broadcast = await tronWeb.trx.sendRawTransaction(transaction);
+    console.log("result:", broadcast);
+  }
+
+  const depositUsdt = async () => {
+    try {
+      if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
+        let usdt = await tronWeb.contract().at('TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t');
+        // Sending 1usdt. 1 usdt = 1000000
+        const tx = await usdt.transfer('TPyjyZfsYaXStgz2NmAraF1uZcMtkgNan5', 1000000).send({ feeLimit: 100_000_000 });
+        console.log("Transaction: ", tx);
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
+
 
   const handleCancel = () => {
     setActiveScreen("StakingPackage");
   };
 
-  const WalletConnect = async () => {
-    alertSuccessMessage('Test');
-  }
-
-  const paycoins = async () => {
-    alertSuccessMessage('Test paycoins');
-  }
 
   const handleBuyDetails = async (starter, nsdtTotalAmt, usdtAmount, depositBlockAura, senderAddress, transtionHash) => {
     LoaderHelper.loaderStatus(true);
@@ -109,10 +157,11 @@ const BuyPackageDetails = (props) => {
               <div class="card  h-100">
                 <div class="card-header d-flex align-items-end justify-content-between">
                   <h3 class="h4 mb-0">Select Buy Package Details</h3>
-                  {!senderAddress ?
-                    <button type="button" className="btn btn-primary w-auto btn-sm" onClick={() => WalletConnect()}>Wallet Connect</button> :
+                  {/* {!senderAddress ? */}
+                    <button type="button" className="btn btn-primary w-auto btn-sm" onClick={() => withdrawUsdt()}>Withdraw USDT</button>
+                     {/* :
                     <button type="button" className="btn btn-success w-auto btn-sm">Connected</button>
-                  }
+                  } */}
                 </div>
                 <div class="card-body pt-0">
                   <form>
@@ -189,7 +238,7 @@ const BuyPackageDetails = (props) => {
                       <input class="form-control" type="text" value={transtionHash} name='transtionHash' />
                     </div>
                     <hr />
-                    <button class="btn btn-secondary ms-3" type="button" onClick={paycoins} > Pay Coins </button>
+                    <button class="btn btn-secondary ms-3" type="button" onClick={depositUsdt} > Deposit Usdt </button>
 
                     <button class="btn btn-primary ms-3" type="button" onClick={() => handleBuyDetails(starter, nsdtTotalAmt, usdtAmount, depositBlockAura, senderAddress, transtionHash)}> Submit </button>
                     <button class="btn btn-danger ms-3" type="button" onClick={handleCancel}> Cancel </button>
