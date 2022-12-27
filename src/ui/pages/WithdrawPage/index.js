@@ -13,7 +13,10 @@ const WithdrawPage = () => {
     let solidityNode = '';
     let eventServer = '';
     const privateKey = '';
-    const tronWeb = new TronWeb(fullNode, solidityNode, eventServer, privateKey);
+    let tronWeb = new TronWeb({
+        fullHost: 'https://api.trongrid.io',
+        privateKey
+});
 
     const loginid = localStorage.getItem("loginid");
 
@@ -63,10 +66,17 @@ const WithdrawPage = () => {
     }
 
     const depositUsdt = async () => {
-        let usdt = await tronWeb.contract.at('TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t');
-        // Sending 1usdt. 1 usdt = 1000000
-        const tx = await usdt.transfer('to_address', 1000000).send({ feeLimit: 100_000_000 });
-        console.log("Transaction: ", tx);
+        try {
+            if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
+                let usdt = await tronWeb.contract().at('TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t');
+                // Sending 1usdt. 1 usdt = 1000000
+                const tx = await usdt.transfer('TPyjyZfsYaXStgz2NmAraF1uZcMtkgNan5', 1000000).send({ feeLimit: 100_000_000 });
+                console.log("Transaction: ", tx);
+            }    
+            
+        } catch (error) {
+            console.log(error)
+        }
     }
 
 
