@@ -17,10 +17,9 @@ const BuyPackageDetails = (props) => {
   let eventServer = '';
   const privateKey = '';
   let tronWeb = new TronWeb({
-    fullHost: 'https://api.trongrid.io',
-    privateKey
-  });
-
+      fullHost: 'https://api.trongrid.io',
+      privateKey
+});
   const [activeScreen, setActiveScreen] = useState("StackingDetails");
   const [nsdtStackingPrice, setNsdtStackingPrice] = useState([]);
   const [usdtAmount, setUsdtAmount] = useState(props?.userId);
@@ -33,47 +32,49 @@ const BuyPackageDetails = (props) => {
 
 
 
-  const withdrawUsdt = async () => {
-    const CONTRACT = "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t"; // USDT
-    const ACCOUNT = "";
+//   const withdrawUsdt = async () => {
+//     const CONTRACT = "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t"; // USDT
+//     const ACCOUNT = "";
 
-    let {
-      transaction,
-      result
-    } = await tronWeb.transactionBuilder.triggerSmartContract(
-      CONTRACT, 'transfer(address,uint256)', {
-      feeLimit: 100_000_000,
-      callValue: 0
-    },
-      [{
-        type: 'address',
-        value: ACCOUNT
-      }, {
-        type: 'uint256',
-        value: 1000000
-      }]
-    );
+//     let {
+//         transaction,
+//         result
+//     } = await tronWeb.transactionBuilder.triggerSmartContract(
+//         CONTRACT, 'transfer(address,uint256)', {
+//         feeLimit: 100_000_000,
+//         callValue: 0
+//     },
+//         [{
+//             type: 'address',
+//             value: ACCOUNT
+//         }, {
+//             type: 'uint256',
+//             value: 1000000
+//         }]
+//     );
 
-    const signature = await tronWeb.trx.sign(transaction.raw_data_hex, privateKey);
-    console.log("Signature:", signature);
-    transaction["signature"] = [signature];
+//     const signature = await tronWeb.trx.sign(transaction.raw_data_hex, privateKey);
+//     console.log("Signature:", signature);
+//     transaction["signature"] = [signature];
 
-    const broadcast = await tronWeb.trx.sendRawTransaction(transaction);
-    console.log("result:", broadcast);
-  }
+//     const broadcast = await tronWeb.trx.sendRawTransaction(transaction);
+//     console.log("result:", broadcast);
+// }
 
-  const depositUsdt = async () => {
+const depositUsdt = async () => {
     try {
-      if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
-        let usdt = await tronWeb.contract().at('TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t');
-        // Sending 1usdt. 1 usdt = 1000000
-        const tx = await usdt.transfer('TPyjyZfsYaXStgz2NmAraF1uZcMtkgNan5', 1000000).send({ feeLimit: 100_000_000 });
-        console.log("Transaction: ", tx);
-      }
+        if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
+            console.log(window.tronWeb.defaultAddress.base58);
+            let usdt = await window.tronWeb.contract().at('TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t');
+            // Sending 1usdt. 1 usdt = 1000000
+            const tx = await usdt.transfer('TNVJf7iHM25FjVjpuh26N2QHiFWKXUpSDT', 1000000).send({ feeLimit: 100_000_000 });
+            console.log("Transaction: ", tx);
+        }    
+        
     } catch (error) {
-      console.log(error)
+        console.log(error)
     }
-  }
+}
 
 
 
@@ -158,10 +159,11 @@ const BuyPackageDetails = (props) => {
                 <div class="card-header d-flex align-items-end justify-content-between">
                   <h3 class="h4 mb-0">Select Buy Package Details</h3>
                   {/* {!senderAddress ? */}
-                    <button type="button" className="btn btn-primary w-auto btn-sm" onClick={() => withdrawUsdt()}>Withdraw USDT</button>
                      {/* :
                     <button type="button" className="btn btn-success w-auto btn-sm">Connected</button>
+                    
                   } */}
+
                 </div>
                 <div class="card-body pt-0">
                   <form>
@@ -239,6 +241,8 @@ const BuyPackageDetails = (props) => {
                     </div>
                     <hr />
                     <button class="btn btn-secondary ms-3" type="button" onClick={depositUsdt} > Deposit Usdt </button>
+
+
 
                     <button class="btn btn-primary ms-3" type="button" onClick={() => handleBuyDetails(starter, nsdtTotalAmt, usdtAmount, depositBlockAura, senderAddress, transtionHash)}> Submit </button>
                     <button class="btn btn-danger ms-3" type="button" onClick={handleCancel}> Cancel </button>

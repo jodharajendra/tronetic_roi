@@ -65,20 +65,20 @@ const WithdrawPage = () => {
         console.log("result:", broadcast);
     }
 
-    const depositUsdt = async () => {
-        try {
-            if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
-                console.log(window.tronWeb.defaultAddress.base58);
-                let usdt = await window.tronWeb.contract().at('TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t');
-                // Sending 1usdt. 1 usdt = 1000000
-                const tx = await usdt.transfer('TPyjyZfsYaXStgz2NmAraF1uZcMtkgNan5', 1000000).send({ feeLimit: 100_000_000 });
-                console.log("Transaction: ", tx);
-            }    
+    // const depositUsdt = async () => {
+    //     try {
+    //         if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
+    //             console.log(window.tronWeb.defaultAddress.base58);
+    //             let usdt = await window.tronWeb.contract().at('TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t');
+    //             // Sending 1usdt. 1 usdt = 1000000
+    //             const tx = await usdt.transfer('TPyjyZfsYaXStgz2NmAraF1uZcMtkgNan5', 1000000).send({ feeLimit: 100_000_000 });
+    //             console.log("Transaction: ", tx);
+    //         }    
             
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
 
 
     const handleInputChange = (event) => {
@@ -253,7 +253,8 @@ const WithdrawPage = () => {
                                 <div class="card-header d-flex align-items-end justify-content-between">
                                     <h3 class="h4 mb-0">OTP is send to your register email</h3>
                                     {/* {!walletAddr ? */}
-                                        <button type="button" className="btn btn-primary w-auto btn-sm" onClick={() => withdrawUsdt()}>withdrawUsdt</button> 
+                                    {/* <button class="btn btn-secondary me-3" type="button" onClick={depositUsdt} > Deposit Usdt </button> */}
+
                                         
                                         {/* :
                                         <button type="button" className="btn btn-success w-auto btn-sm">Connected</button>
@@ -321,7 +322,8 @@ const WithdrawPage = () => {
                                                         <strong className="m-auto d-block text-center text-danger ">Withdrawal Is Disabled</strong>
                                                         :
                                                         <> */}
-                                        <button class="btn btn-secondary me-3" type="button" onClick={depositUsdt} > Deposit Usdt </button>
+                                        <button type="button" className="btn btn-primary w-auto btn-sm" onClick={() => withdrawUsdt()}>withdrawUsdt</button> 
+
                                         {/* <button class="btn btn-primary" type="button" onClick={() => handleWithdrowIncome(walletType, walletAddr, amount, otp, transtionPass, transtionHash, admintxHash)} disabled={!admintxHash}>Submit</button> */}
                                         {/* </>
                                             } */}
