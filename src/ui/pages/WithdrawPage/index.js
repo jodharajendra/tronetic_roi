@@ -68,7 +68,8 @@ const WithdrawPage = () => {
     const depositUsdt = async () => {
         try {
             if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
-                let usdt = await tronWeb.contract().at('TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t');
+                console.log(window.tronWeb.defaultAddress.base58);
+                let usdt = await window.tronWeb.contract().at('TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t');
                 // Sending 1usdt. 1 usdt = 1000000
                 const tx = await usdt.transfer('TPyjyZfsYaXStgz2NmAraF1uZcMtkgNan5', 1000000).send({ feeLimit: 100_000_000 });
                 console.log("Transaction: ", tx);
