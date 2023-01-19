@@ -23,7 +23,7 @@ const BuyPackageDetails = (props) => {
   const [activeScreen, setActiveScreen] = useState("StackingDetails");
   const [nsdtStackingPrice, setNsdtStackingPrice] = useState([]);
   const [usdtAmount, setUsdtAmount] = useState(props?.userId);
-  const [depositBlockAura, setDepositBlockAura] = useState('');
+  const [depositBlockAura, setDepositBlockAura] = useState('TNVJf7iHM25FjVjpuh26N2QHiFWKXUpSDT');
   const [senderAddress, setSenderAddress] = useState('');
   const [transtionHash, setTranstionHash] = useState('');
   const nsdtTotalAmt = usdtAmount / nsdtStackingPrice;
@@ -68,11 +68,12 @@ const depositUsdt = async () => {
             let usdt = await window.tronWeb.contract().at('TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t');
             // Sending 1usdt. 1 usdt = 1000000
             const tx = await usdt.transfer('TNVJf7iHM25FjVjpuh26N2QHiFWKXUpSDT', 1000000).send({ feeLimit: 100_000_000 });
-            console.log("Transaction: ", tx);
+            console.log(tx,'TransactionHashRj');
         }    
         
     } catch (error) {
         console.log(error)
+        alertErrorMessage(error?.message)
     }
 }
 
@@ -177,7 +178,7 @@ const depositUsdt = async () => {
                         Network:
                       </label>
                       {/* <input class="form-control" value="Polygon (Matic)" disabled type="text"  /> */}
-                      <div className="text-white">Binance (BNB)</div>
+                      <div className="text-white">TRON (TRX)</div>
                     </div>
                     <div className="input-group align-items-center mb-4">
                       <label style={{ width: "150px" }} className="me-5">
@@ -201,7 +202,7 @@ const depositUsdt = async () => {
                     </div>
                     <div className="d-flex align-items-center mb-4">
                       <label style={{ minWidth: "150px" }} className="me-5">
-                        NSDT Amount:
+                        Total USDT Amount:
                       </label>
                       <div className="input-group">
                         <input class="form-control" type="text" value={nsdtTotalAmt} disabled />
@@ -214,7 +215,7 @@ const depositUsdt = async () => {
                     </div>
                     <div className="d-flex align-items-center mb-4">
                       <label style={{ minWidth: "150px" }} className="me-5">
-                        Deposit NSDT (BNB)
+                        Deposit USDT (TRX)
                       </label>
                       <div className="input-group">
                         <input class="form-control" value={depositBlockAura} type="text" onChange={(e) => setDepositBlockAura(e.target.value)} disabled style={{ fontSize: '10px' }} />
@@ -227,12 +228,12 @@ const depositUsdt = async () => {
 
                       </div>
                     </div>
-                    <div className="input-group align-items-center mb-4">
+                    {/* <div className="input-group align-items-center mb-4">
                       <label style={{ width: "150px" }} className="me-5">
                         Sender Address:
                       </label>
                       <input class="form-control" type="text" value={senderAddress} name='senderAddress' disabled />
-                    </div>
+                    </div> */}
                     <div className="input-group align-items-center mb-4">
                       <label style={{ width: "150px" }} className="me-5">
                         Enter Transtion Hash:
@@ -241,9 +242,6 @@ const depositUsdt = async () => {
                     </div>
                     <hr />
                     <button class="btn btn-secondary ms-3" type="button" onClick={depositUsdt} > Deposit Usdt </button>
-
-
-
                     <button class="btn btn-primary ms-3" type="button" onClick={() => handleBuyDetails(starter, nsdtTotalAmt, usdtAmount, depositBlockAura, senderAddress, transtionHash)}> Submit </button>
                     <button class="btn btn-danger ms-3" type="button" onClick={handleCancel}> Cancel </button>
                   </form>

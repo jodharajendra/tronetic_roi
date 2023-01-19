@@ -89,7 +89,7 @@ const Dashboardpage = () => {
                                 </span><span>My Package </span></a>
                             <ul class="collapse list-unstyled " id="exampledropdownDropdown3">
                                 <li><a class="sidebar-link" href="javascript: void(0)" onClick={() => setActiveTab('StakingPackage')}> Stake Package With Wallet</a></li>
-                                <li><a class="sidebar-link" href="javascript: void(0)" onClick={() => setActiveTab('StakepackageBep')}> Stake Package With DApp(BEP-20)</a></li>
+                                <li><a class="sidebar-link" href="javascript: void(0)" onClick={() => setActiveTab('StakepackageBep')}> Stake Package With Dapp(TRC-20)</a></li>
                                 <li><a class="sidebar-link" href="javascript: void(0)" onClick={() => setActiveTab('StakePackageHistory')}> My Package</a></li>
                             </ul>
                         </li>

@@ -52,7 +52,6 @@ const StakePackageHistory = () => {
     const columns = [
         { dataField: 'date', text: 'Date/Time', sort: true, formatter: dateFilter },
         { dataField: 'address', text: 'Contract Address', sort: true, formatter: contactAddress  },
-        { dataField: 'nsdtAmount', text: 'Nsdt Amount', sort: true },
         { dataField: 'usdtAmount', text: 'USDT Amount', sort: true },
         { dataField: 'stackingType', text: 'Stacking Type', sort: true },
         { dataField: 'remainingAmnt', text: 'Remaining Amount', sort: true,formatter: remainingAmnt },

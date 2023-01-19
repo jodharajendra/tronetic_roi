@@ -453,7 +453,6 @@ const HomePage = () => {
                                                     <th>Contract Address</th>
                                                     <th>Deposit Address</th>
                                                     <th>Transaction Hash</th>
-                                                    <th>Nsdt Amount</th>
                                                     <th>Stacking Type</th>
                                                     <th>Reward Rate</th>
                                                 </tr>
@@ -478,7 +477,7 @@ const HomePage = () => {
                                                                     {item?.hash}
                                                                 </div>
                                                             </td>
-                                                            <td>{item?.nsdtAmount}</td>
+                                                            
                                                             <td>{item?.stackingType}</td>
                                                             <td>1.25%</td>
                                                         </tr>

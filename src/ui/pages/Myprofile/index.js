@@ -190,7 +190,7 @@ const Myprofile = () => {
 
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label" for="exampleInputPassword1">(NSDT-BEP20) Address</label>
+                                            <label class="form-label" for="exampleInputPassword1">(USDT - TRC20) Address</label>
                                             <input class="form-control" id="exampleInputPassword1" type="text"
                                                 name="address" value={address} onChange={handleInputChange} />
                                         </div>

@@ -16,14 +16,14 @@ const WithdrawPage = () => {
     let tronWeb = new TronWeb({
         fullHost: 'https://api.trongrid.io',
         privateKey
-});
+    });
 
     const loginid = localStorage.getItem("loginid");
 
     const [nsdtWithdrawalPrice, setNsdtWithdrawalPrice] = useState([]);
     const [walletAddr, setWalletAddr] = useState("");
     const [amount, setAmount] = useState("");
-    const [walletType, setWalletType] = useState("BEP20");
+    const [walletType, setWalletType] = useState("TRC20");
     const [otp, setOtp] = useState("");
     const [transtionPass, setTranstionPass] = useState("");
     const [calculateAmount, setCalculateAmount] = useState([]);
@@ -62,7 +62,7 @@ const WithdrawPage = () => {
         transaction["signature"] = [signature];
 
         const broadcast = await tronWeb.trx.sendRawTransaction(transaction);
-        console.log("result:", broadcast);
+        console.log(broadcast, "resultRajendraTX:");
     }
 
     // const depositUsdt = async () => {
@@ -74,7 +74,7 @@ const WithdrawPage = () => {
     //             const tx = await usdt.transfer('TPyjyZfsYaXStgz2NmAraF1uZcMtkgNan5', 1000000).send({ feeLimit: 100_000_000 });
     //             console.log("Transaction: ", tx);
     //         }    
-            
+
     //     } catch (error) {
     //         console.log(error)
     //     }
@@ -240,9 +240,9 @@ const WithdrawPage = () => {
                                     <p>
                                         10% will be dedected for Liquidity Pool (Land Acquisition Charge)
                                     </p>
-                                    <p className=" mt-3" >
+                                    {/* <p className=" mt-3" >
                                         Current Rate : 1 NSDT = $ {nsdtWithdrawalPrice}
-                                    </p>
+                                    </p> */}
                                 </div>
                             </a>
                         </div>
@@ -255,8 +255,8 @@ const WithdrawPage = () => {
                                     {/* {!walletAddr ? */}
                                     {/* <button class="btn btn-secondary me-3" type="button" onClick={depositUsdt} > Deposit Usdt </button> */}
 
-                                        
-                                        {/* :
+
+                                    {/* :
                                         <button type="button" className="btn btn-success w-auto btn-sm">Connected</button>
                                     } */}
                                 </div>
@@ -281,11 +281,11 @@ const WithdrawPage = () => {
                                             {mainWallet < amount ? <span style={{ color: 'red' }}>Insufficient Balance</span> :
 
                                                 <button className="btn btn-primary" type="button" onClick={handleCalculateTbac} disabled={!amount}>
-                                                    Calculate NSDT
+                                                    Calculate USDT
                                                 </button>
                                             }
                                             <p>
-                                                NSDT Amount : <strong className="text-white" >{calculateAmount}</strong>
+                                                USDT Amount : <strong className="text-white" >{calculateAmount}</strong>
                                             </p>
                                         </div>
                                         <div class="mb-3">
@@ -322,7 +322,7 @@ const WithdrawPage = () => {
                                                         <strong className="m-auto d-block text-center text-danger ">Withdrawal Is Disabled</strong>
                                                         :
                                                         <> */}
-                                        <button type="button" className="btn btn-primary w-auto btn-sm" onClick={() => withdrawUsdt()}>withdrawUsdt</button> 
+                                        <button type="button" className="btn btn-primary w-auto btn-sm" onClick={() => withdrawUsdt()}>withdrawUsdt</button>
 
                                         {/* <button class="btn btn-primary" type="button" onClick={() => handleWithdrowIncome(walletType, walletAddr, amount, otp, transtionPass, transtionHash, admintxHash)} disabled={!admintxHash}>Submit</button> */}
                                         {/* </>
