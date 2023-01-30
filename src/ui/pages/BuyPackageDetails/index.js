@@ -10,16 +10,16 @@ import LoaderHelper from "../../../customComponent/Loading/LoaderHelper";
 
 const BuyPackageDetails = (props) => {
 
-  const TronWeb = require('tronweb')
-  const HttpProvider = TronWeb.providers.HttpProvider;
-  let fullNode = '';
-  let solidityNode = '';
-  let eventServer = '';
-  const privateKey = '';
-  let tronWeb = new TronWeb({
-      fullHost: 'https://api.trongrid.io',
-      privateKey
-});
+//   const TronWeb = require('tronweb')
+//   const HttpProvider = TronWeb.providers.HttpProvider;
+//   let fullNode = '';
+//   let solidityNode = '';
+//   let eventServer = '';
+//   const privateKey = '';
+//   let tronWeb = new TronWeb({
+//       fullHost: 'https://api.trongrid.io',
+//       privateKey
+// });
   const [activeScreen, setActiveScreen] = useState("StackingDetails");
   const [nsdtStackingPrice, setNsdtStackingPrice] = useState([]);
   const [usdtAmount, setUsdtAmount] = useState(props?.userId);

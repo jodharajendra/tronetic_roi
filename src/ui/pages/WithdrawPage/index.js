@@ -7,12 +7,13 @@ import { useNavigate } from "react-router-dom";
 
 
 const WithdrawPage = () => {
+
     const TronWeb = require('tronweb')
     const HttpProvider = TronWeb.providers.HttpProvider;
     let fullNode = '';
     let solidityNode = '';
     let eventServer = '';
-    const privateKey = '';
+    const privateKey = 'a951ab1f552d2510dc2aaef34e5ff1bc80a6112da0e21a1c30d96d978d3619f3';
     let tronWeb = new TronWeb({
         fullHost: 'https://api.trongrid.io',
         privateKey
@@ -53,7 +54,7 @@ const WithdrawPage = () => {
                 value: ACCOUNT
             }, {
                 type: 'uint256',
-                value: 1000000
+                value: 100000
             }]
         );
 
